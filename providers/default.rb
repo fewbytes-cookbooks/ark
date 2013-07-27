@@ -120,8 +120,9 @@ action :put do
   end
 
   # unpack based on file extension
+  _unpack_command = unpack_command
   execute "unpack #{new_resource.release_file}" do
-    command unpack_command
+    command _unpack_command
     cwd new_resource.path
     environment new_resource.environment
     notifies :run, "execute[set owner on #{new_resource.path}]"
@@ -230,8 +231,9 @@ action :install_with_make do
   end
 
   # unpack based on file extension
+  _unpack_command = unpack_command
   execute "unpack #{new_resource.release_file}" do
-    command unpack_command
+    command _unpack_command
     cwd new_resource.path
     environment new_resource.environment
     notifies :run, "execute[autogen #{new_resource.path}]"
@@ -297,8 +299,9 @@ action :configure do
   end
 
   # unpack based on file extension
+  _unpack_command = unpack_command
   execute "unpack #{new_resource.release_file}" do
-    command unpack_command
+    command _unpack_command
     cwd new_resource.path
     environment new_resource.environment
     notifies :run, "execute[autogen #{new_resource.path}]"
